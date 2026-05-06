@@ -1,0 +1,16 @@
+# SSH Legacy Config for old OpenSSH targets (e.g. Metasploitable 2)
+# Place Host block into ~/.ssh/config
+
+Host <TARGET_IP>
+    KexAlgorithms diffie-hellman-group1-sha1,diffie-hellman-group14-sha1
+    HostKeyAlgorithms ssh-rsa
+    PubkeyAcceptedKeyTypes ssh-rsa
+    MACs hmac-md5,hmac-sha1,hmac-sha1-96,hmac-md5-96
+    StrictHostKeyChecking no
+
+# Inline version (no config file needed):
+# ssh -o "KexAlgorithms=diffie-hellman-group1-sha1" \
+#     -o "HostKeyAlgorithms=ssh-rsa" \
+#     -o "MACs=hmac-md5" \
+#     -o "StrictHostKeyChecking=no" \
+#     user@<TARGET_IP>
